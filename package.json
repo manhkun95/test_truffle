@@ -1,0 +1,27 @@
+{
+  "name": "smart_contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "testweb3.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "truffle-assertions": "^0.6.1",
+    "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manhkun95/test_truffle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manhkun95/test_truffle/issues"
+  },
+  "homepage": "https://github.com/manhkun95/test_truffle#readme"
+}
