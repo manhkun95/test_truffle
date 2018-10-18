@@ -14,7 +14,7 @@ contract Orders {
     uint updatedAt;
   }
   
-  Order[] orders;
+  Order[] public orders;
   mapping (uint => address) ordersToShop;
   mapping( address => uint[]) ordersOfShop;
   mapping ( address => uint[]) ordersOfCustomer;
@@ -47,7 +47,6 @@ contract Orders {
     ordersOfCustomer[msg.sender].push(id);
     emit NewOrder(_productId, _name, _quantity, _price, _shipAddress, _shippingFee, 0, 0, now, now);
     return id;
-    
   }
 
   function getOrderIdsByCustomer() external view returns (uint[]) {
@@ -58,6 +57,10 @@ contract Orders {
   function getOrderIdsByShop() external view returns (uint[]) {
     uint[] memory orderIds = ordersOfShop[msg.sender];
     return orderIds;
+  }
+
+  function getOrderLength() public view returns (uint) {
+    return orders.length;
   }
 
   function getOrderById(uint _id) external view 
@@ -74,15 +77,15 @@ contract Orders {
     );
   }
 
-  function updateOrderStatus(uint _id, int8 status) public orderExits(_id) {
-    require(status <= 5, "Status is invalid.");
-    if (status == 4 || status == -1) {
+  function updateOrderStatus(uint _id, int8 _status) public orderExits(_id) {
+    require(_status <= 5, "Status is invalid.");
+    if (_status == 4 || _status == -1) {
       require(orderBeLongCustomer(_id), "Don't have permission to update this order.");
     } else {
       require(orderBeLongShop(_id), "Don't have permission to update this order.");
     }
-    orders[_id].orderStatus = status;
-    emit UpdateOrder(_id, status);
+    orders[_id].orderStatus = _status;
+    emit UpdateOrder(_id, _status);
   }
 
   //Check if shop is owner of this order
